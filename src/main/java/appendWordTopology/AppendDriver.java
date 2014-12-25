@@ -27,7 +27,7 @@ public class AppendDriver {
 			LocalCluster cluster = new LocalCluster();
 			cluster.submitTopology("wordAppend", conf,
 					topology.createTopology());
-			Time.sleep(5000);
+			Thread.sleep(5000);
 			cluster.killTopology("wordAppend");
 			cluster.shutdown();
 		}

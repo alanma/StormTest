@@ -33,12 +33,14 @@ public class AppendWordBolt extends BaseRichBolt {
 		System.out.println(sBuffer.toString());
 		collector.emit(input, new Values(input.getString(0), input.getString(1)
 				+ "~~", input.getString(2)));
+//		collector.emit(input, new Values("one", "two"));
 		collector.ack(input);
 	}
 
 	@Override
 	public void declareOutputFields(OutputFieldsDeclarer declarer) {
 		declarer.declare(new Fields("output1", "output2", "output3"));
+//		declarer.declare(new Fields("one", "two"));
 	}
 
 }
