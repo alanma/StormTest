@@ -11,21 +11,7 @@ import org.apache.zookeeper.Watcher.Event.KeeperState;
 import org.apache.zookeeper.ZooDefs.Ids;
 import org.apache.zookeeper.ZooKeeper;
 
-public class CreateGroup implements Watcher {
-	private ZooKeeper zk;
-	CountDownLatch connetedSignal = new CountDownLatch(1);
-
-	public void connect(String hosts) throws IOException, InterruptedException {
-		zk = new ZooKeeper(hosts, 5000, this);
-		connetedSignal.await();
-	}
-
-	@Override
-	public void process(WatchedEvent event) {
-		if (event.getState() == KeeperState.SyncConnected) {
-			connetedSignal.countDown();
-		}
-	}
+public class CreateGroup extends ConnectionWatcher {
 
 	public void create(String groupName) throws KeeperException,
 			InterruptedException {
@@ -34,12 +20,12 @@ public class CreateGroup implements Watcher {
 				CreateMode.PERSISTENT);
 		System.out.println("created " + createPath);
 	}
-	
-	public void close() throws InterruptedException{
+
+	public void close() throws InterruptedException {
 		zk.close();
 	}
-	
-	public static void main(String[] args) throws KeeperException, InterruptedException, IOException {
+
+	public static void main(String[] args) throws Exception {
 		CreateGroup createGroup = new CreateGroup();
 		createGroup.connect(args[0]);
 		createGroup.create(args[1]);
