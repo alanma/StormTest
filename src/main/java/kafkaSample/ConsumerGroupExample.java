@@ -11,6 +11,12 @@ import java.util.Properties;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/**
+ * 利用这个group去消费指定的topic
+ * @author wangjj
+ *
+ * Jan 4, 2015
+ */
 public class ConsumerGroupExample {
 	private final ConsumerConnector consumer;
 	private final String topic;
