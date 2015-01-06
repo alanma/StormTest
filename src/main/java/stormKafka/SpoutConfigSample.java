@@ -10,6 +10,12 @@ import storm.kafka.ZkHosts;
 import storm.kafka.trident.OpaqueTridentKafkaSpout;
 import storm.kafka.trident.TridentKafkaConfig;
 
+/**
+ * storm作为Kafka的consumer
+ * @author wangjj
+ *
+ * Jan 5, 2015
+ */
 public class SpoutConfigSample {
 	/**
 	 * 创建一个kafkaspout
